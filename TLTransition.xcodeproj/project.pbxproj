@@ -1,0 +1,280 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D6255C0F14ECBC52000C80A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6255C0E14ECBC52000C80A6 /* UIKit.framework */; };
+		D6255C1114ECBC52000C80A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6255C1014ECBC52000C80A6 /* Foundation.framework */; };
+		D6255C1314ECBC52000C80A6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6255C1214ECBC52000C80A6 /* CoreGraphics.framework */; };
+		D6255C1914ECBC52000C80A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6255C1714ECBC52000C80A6 /* InfoPlist.strings */; };
+		D6255C1B14ECBC52000C80A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6255C1A14ECBC52000C80A6 /* main.m */; };
+		D6255C1F14ECBC52000C80A6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6255C1E14ECBC52000C80A6 /* AppDelegate.m */; };
+		D6255C2214ECBC52000C80A6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6255C2114ECBC52000C80A6 /* ViewController.m */; };
+		D6255C2514ECBC52000C80A6 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6255C2314ECBC52000C80A6 /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D6255C0A14ECBC52000C80A6 /* TLTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TLTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6255C0E14ECBC52000C80A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D6255C1014ECBC52000C80A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D6255C1214ECBC52000C80A6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D6255C1614ECBC52000C80A6 /* TLTransition-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TLTransition-Info.plist"; sourceTree = "<group>"; };
+		D6255C1814ECBC52000C80A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D6255C1A14ECBC52000C80A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D6255C1C14ECBC52000C80A6 /* TLTransition-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TLTransition-Prefix.pch"; sourceTree = "<group>"; };
+		D6255C1D14ECBC52000C80A6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D6255C1E14ECBC52000C80A6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D6255C2014ECBC52000C80A6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D6255C2114ECBC52000C80A6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D6255C2414ECBC52000C80A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D6255C0714ECBC52000C80A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6255C0F14ECBC52000C80A6 /* UIKit.framework in Frameworks */,
+				D6255C1114ECBC52000C80A6 /* Foundation.framework in Frameworks */,
+				D6255C1314ECBC52000C80A6 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D6255BFF14ECBC52000C80A6 = {
+			isa = PBXGroup;
+			children = (
+				D6255C1414ECBC52000C80A6 /* TLTransition */,
+				D6255C0D14ECBC52000C80A6 /* Frameworks */,
+				D6255C0B14ECBC52000C80A6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D6255C0B14ECBC52000C80A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6255C0A14ECBC52000C80A6 /* TLTransition.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D6255C0D14ECBC52000C80A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6255C0E14ECBC52000C80A6 /* UIKit.framework */,
+				D6255C1014ECBC52000C80A6 /* Foundation.framework */,
+				D6255C1214ECBC52000C80A6 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D6255C1414ECBC52000C80A6 /* TLTransition */ = {
+			isa = PBXGroup;
+			children = (
+				D6255C1D14ECBC52000C80A6 /* AppDelegate.h */,
+				D6255C1E14ECBC52000C80A6 /* AppDelegate.m */,
+				D6255C2014ECBC52000C80A6 /* ViewController.h */,
+				D6255C2114ECBC52000C80A6 /* ViewController.m */,
+				D6255C2314ECBC52000C80A6 /* ViewController.xib */,
+				D6255C1514ECBC52000C80A6 /* Supporting Files */,
+			);
+			path = TLTransition;
+			sourceTree = "<group>";
+		};
+		D6255C1514ECBC52000C80A6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D6255C1614ECBC52000C80A6 /* TLTransition-Info.plist */,
+				D6255C1714ECBC52000C80A6 /* InfoPlist.strings */,
+				D6255C1A14ECBC52000C80A6 /* main.m */,
+				D6255C1C14ECBC52000C80A6 /* TLTransition-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D6255C0914ECBC52000C80A6 /* TLTransition */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6255C2814ECBC52000C80A6 /* Build configuration list for PBXNativeTarget "TLTransition" */;
+			buildPhases = (
+				D6255C0614ECBC52000C80A6 /* Sources */,
+				D6255C0714ECBC52000C80A6 /* Frameworks */,
+				D6255C0814ECBC52000C80A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TLTransition;
+			productName = TLTransition;
+			productReference = D6255C0A14ECBC52000C80A6 /* TLTransition.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D6255C0114ECBC52000C80A6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "中央大學";
+			};
+			buildConfigurationList = D6255C0414ECBC52000C80A6 /* Build configuration list for PBXProject "TLTransition" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D6255BFF14ECBC52000C80A6;
+			productRefGroup = D6255C0B14ECBC52000C80A6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D6255C0914ECBC52000C80A6 /* TLTransition */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D6255C0814ECBC52000C80A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6255C1914ECBC52000C80A6 /* InfoPlist.strings in Resources */,
+				D6255C2514ECBC52000C80A6 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D6255C0614ECBC52000C80A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6255C1B14ECBC52000C80A6 /* main.m in Sources */,
+				D6255C1F14ECBC52000C80A6 /* AppDelegate.m in Sources */,
+				D6255C2214ECBC52000C80A6 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D6255C1714ECBC52000C80A6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D6255C1814ECBC52000C80A6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D6255C2314ECBC52000C80A6 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D6255C2414ECBC52000C80A6 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D6255C2614ECBC52000C80A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D6255C2714ECBC52000C80A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D6255C2914ECBC52000C80A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TLTransition/TLTransition-Prefix.pch";
+				INFOPLIST_FILE = "TLTransition/TLTransition-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D6255C2A14ECBC52000C80A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TLTransition/TLTransition-Prefix.pch";
+				INFOPLIST_FILE = "TLTransition/TLTransition-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D6255C0414ECBC52000C80A6 /* Build configuration list for PBXProject "TLTransition" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6255C2614ECBC52000C80A6 /* Debug */,
+				D6255C2714ECBC52000C80A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6255C2814ECBC52000C80A6 /* Build configuration list for PBXNativeTarget "TLTransition" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6255C2914ECBC52000C80A6 /* Debug */,
+				D6255C2A14ECBC52000C80A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D6255C0114ECBC52000C80A6 /* Project object */;
+}
