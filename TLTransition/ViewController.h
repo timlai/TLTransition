@@ -2,12 +2,16 @@
 //  ViewController.h
 //  TLTransition
 //
-//  Created by 賴 彥廷 on 2012/2/16.
-//  Copyright (c) 2012年 中央大學. All rights reserved.
+//  Created by Tim Lai on 2012/2/16.
+//  Copyright (c) 2012年 TiWiTech. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "TLTransitionView.h"
+#import "TLFadeTransition.h"
 
-@interface ViewController : UIViewController
-
+@interface ViewController : UIViewController<TLTransitionViewDelegate> {
+    int pageIndex;
+}
+@property (retain, nonatomic) IBOutlet TLTransitionView *tlView;
 @end

@@ -15,6 +15,12 @@
 		D6255C1F14ECBC52000C80A6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6255C1E14ECBC52000C80A6 /* AppDelegate.m */; };
 		D6255C2214ECBC52000C80A6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6255C2114ECBC52000C80A6 /* ViewController.m */; };
 		D6255C2514ECBC52000C80A6 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6255C2314ECBC52000C80A6 /* ViewController.xib */; };
+		D6255C2D14ECCB62000C80A6 /* TLTransitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6255C2C14ECCB62000C80A6 /* TLTransitionView.m */; };
+		D6255C3014ECCB75000C80A6 /* TLTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D6255C2F14ECCB75000C80A6 /* TLTransition.m */; };
+		D6255C3A14ECD696000C80A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6255C3914ECD696000C80A6 /* QuartzCore.framework */; };
+		D643A4A914EFAF9600EBFCB8 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D643A4A814EFAF9600EBFCB8 /* RootViewController.m */; };
+		D656388D14EE3890000E1A91 /* TLFadeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D656388C14EE388F000E1A91 /* TLFadeTransition.m */; };
+		D65638C814EF4EFE000E1A91 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = D65638C714EF4EFE000E1A91 /* image.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +37,16 @@
 		D6255C2014ECBC52000C80A6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D6255C2114ECBC52000C80A6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D6255C2414ECBC52000C80A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		D6255C2B14ECCB62000C80A6 /* TLTransitionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTransitionView.h; sourceTree = "<group>"; };
+		D6255C2C14ECCB62000C80A6 /* TLTransitionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTransitionView.m; sourceTree = "<group>"; };
+		D6255C2E14ECCB75000C80A6 /* TLTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTransition.h; sourceTree = "<group>"; };
+		D6255C2F14ECCB75000C80A6 /* TLTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTransition.m; sourceTree = "<group>"; };
+		D6255C3914ECD696000C80A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D643A4A714EFAF9600EBFCB8 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		D643A4A814EFAF9600EBFCB8 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		D656388B14EE388F000E1A91 /* TLFadeTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLFadeTransition.h; sourceTree = "<group>"; };
+		D656388C14EE388F000E1A91 /* TLFadeTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFadeTransition.m; sourceTree = "<group>"; };
+		D65638C714EF4EFE000E1A91 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6255C3A14ECD696000C80A6 /* QuartzCore.framework in Frameworks */,
 				D6255C0F14ECBC52000C80A6 /* UIKit.framework in Frameworks */,
 				D6255C1114ECBC52000C80A6 /* Foundation.framework in Frameworks */,
 				D6255C1314ECBC52000C80A6 /* CoreGraphics.framework in Frameworks */,
@@ -67,6 +84,7 @@
 		D6255C0D14ECBC52000C80A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6255C3914ECD696000C80A6 /* QuartzCore.framework */,
 				D6255C0E14ECBC52000C80A6 /* UIKit.framework */,
 				D6255C1014ECBC52000C80A6 /* Foundation.framework */,
 				D6255C1214ECBC52000C80A6 /* CoreGraphics.framework */,
@@ -79,10 +97,18 @@
 			children = (
 				D6255C1D14ECBC52000C80A6 /* AppDelegate.h */,
 				D6255C1E14ECBC52000C80A6 /* AppDelegate.m */,
+				D643A4A714EFAF9600EBFCB8 /* RootViewController.h */,
+				D643A4A814EFAF9600EBFCB8 /* RootViewController.m */,
 				D6255C2014ECBC52000C80A6 /* ViewController.h */,
 				D6255C2114ECBC52000C80A6 /* ViewController.m */,
 				D6255C2314ECBC52000C80A6 /* ViewController.xib */,
 				D6255C1514ECBC52000C80A6 /* Supporting Files */,
+				D6255C2B14ECCB62000C80A6 /* TLTransitionView.h */,
+				D6255C2C14ECCB62000C80A6 /* TLTransitionView.m */,
+				D6255C2E14ECCB75000C80A6 /* TLTransition.h */,
+				D6255C2F14ECCB75000C80A6 /* TLTransition.m */,
+				D656388B14EE388F000E1A91 /* TLFadeTransition.h */,
+				D656388C14EE388F000E1A91 /* TLFadeTransition.m */,
 			);
 			path = TLTransition;
 			sourceTree = "<group>";
@@ -90,6 +116,7 @@
 		D6255C1514ECBC52000C80A6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D65638C714EF4EFE000E1A91 /* image.png */,
 				D6255C1614ECBC52000C80A6 /* TLTransition-Info.plist */,
 				D6255C1714ECBC52000C80A6 /* InfoPlist.strings */,
 				D6255C1A14ECBC52000C80A6 /* main.m */,
@@ -151,6 +178,7 @@
 			files = (
 				D6255C1914ECBC52000C80A6 /* InfoPlist.strings in Resources */,
 				D6255C2514ECBC52000C80A6 /* ViewController.xib in Resources */,
+				D65638C814EF4EFE000E1A91 /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +192,10 @@
 				D6255C1B14ECBC52000C80A6 /* main.m in Sources */,
 				D6255C1F14ECBC52000C80A6 /* AppDelegate.m in Sources */,
 				D6255C2214ECBC52000C80A6 /* ViewController.m in Sources */,
+				D6255C2D14ECCB62000C80A6 /* TLTransitionView.m in Sources */,
+				D6255C3014ECCB75000C80A6 /* TLTransition.m in Sources */,
+				D656388D14EE3890000E1A91 /* TLFadeTransition.m in Sources */,
+				D643A4A914EFAF9600EBFCB8 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +305,7 @@
 				D6255C2A14ECBC52000C80A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

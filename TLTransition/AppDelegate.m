@@ -2,13 +2,13 @@
 //  AppDelegate.m
 //  TLTransition
 //
-//  Created by 賴 彥廷 on 2012/2/16.
-//  Copyright (c) 2012年 中央大學. All rights reserved.
+//  Created by Tim Lai on 2012/2/16.
+//  Copyright (c) 2012年 TiWiTech. All rights reserved.
 //
 
 #import "AppDelegate.h"
 
-#import "ViewController.h"
+#import "RootViewController.h"
 
 @implementation AppDelegate
 
@@ -26,7 +26,8 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
+    self.viewController = [[[UINavigationController alloc] initWithRootViewController:[[RootViewController alloc] initWithStyle:UITableViewStyleGrouped]] autorelease];
+    
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
