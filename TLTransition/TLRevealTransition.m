@@ -1,8 +1,8 @@
 //
-//  TLTransition.m
+//  TLRevealTransition.m
 //  TLTransition
 //
-//  Created by Tim Lai on 2012/2/16.
+//  Created by Tim Lai on 2012/2/17.
 
 // This code is distributed under the terms and conditions of the MIT license. 
 
@@ -26,31 +26,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "TLTransition.h"
 
-@implementation TLTransition
-@synthesize rootLayer = rootLayer_;
+#import "TLRevealTransition.h"
 
-- (id)init {
-    self  = [super init];
-    
-    if (self) {
-        self.rootLayer = [CALayer layer];
-    }
-    
-    return self;
-}
+@implementation TLRevealTransition
 
 - (void)prepareFrom:(UIImage *)currentImage to:(UIImage *)newImage {
+    layer1 = [CALayer layer];
+    layer2 = [CALayer layer];
     
+    
+    layer1.frame = self.rootLayer.bounds;
+    layer1.contents = (id)[currentImage CGImage];
+    
+    layer2.frame = self.rootLayer.bounds;
+    layer2.contents = (id)[newImage CGImage];
+    layer2.opacity = 0.0;
+    
+    [self.rootLayer addSublayer:layer2];
+    [self.rootLayer addSublayer:layer1];
 }
 
 - (void)renderToProgress:(float)progress {
-    
+    layer1.opacity = 1.0 - progress;
+    layer2.opacity = progress;
 }
 
-- (void)dealloc {
-    [rootLayer_ release];
-    [super dealloc];
-}
 @end

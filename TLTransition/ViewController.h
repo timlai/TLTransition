@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TLTransitionView.h"
-#import "TLFadeTransition.h"
+#import "TLRevealTransition.h"
 
 @interface ViewController : UIViewController<TLTransitionViewDelegate> {
     int pageIndex;

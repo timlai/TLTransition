@@ -1,8 +1,8 @@
 //
-//  TLFadeTransition.h
+//  TLRevealTransition.h
 //  TLTransition
 //
-///  Created by Tim Lai on 2012/2/17.
+//  Created by Tim Lai on 2012/2/17.
 
 // This code is distributed under the terms and conditions of the MIT license. 
 
@@ -29,6 +29,8 @@
 #import <Foundation/Foundation.h>
 #import "TLTransition.h"
 
-@interface TLFadeTransition : TLTransition 
+@interface TLRevealTransition : TLTransition {
+    CALayer *layer1, *layer2;
+}
 
 @end

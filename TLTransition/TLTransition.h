@@ -30,6 +30,6 @@
 #import <QuartzCore/QuartzCore.h>
 @interface TLTransition : NSObject
 - (void)prepareFrom:(UIImage *)currentImage to:(UIImage *)newImage;
-- (void)drawWithProgress:(float)progress;
+- (void)renderToProgress:(float)progress;
 @property (nonatomic, retain) CALayer *rootLayer;
 @end

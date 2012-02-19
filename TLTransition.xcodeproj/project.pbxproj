@@ -19,8 +19,9 @@
 		D6255C3014ECCB75000C80A6 /* TLTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D6255C2F14ECCB75000C80A6 /* TLTransition.m */; };
 		D6255C3A14ECD696000C80A6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6255C3914ECD696000C80A6 /* QuartzCore.framework */; };
 		D643A4A914EFAF9600EBFCB8 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D643A4A814EFAF9600EBFCB8 /* RootViewController.m */; };
-		D656388D14EE3890000E1A91 /* TLFadeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D656388C14EE388F000E1A91 /* TLFadeTransition.m */; };
-		D65638C814EF4EFE000E1A91 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = D65638C714EF4EFE000E1A91 /* image.png */; };
+		D643A4E614F15F1800EBFCB8 /* TLFlipTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D643A4E514F15F1800EBFCB8 /* TLFlipTransition.m */; };
+		D643A4EA14F166E300EBFCB8 /* TLMoveInTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D643A4E914F166E300EBFCB8 /* TLMoveInTransition.m */; };
+		D656388D14EE3890000E1A91 /* TLRevealTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D656388C14EE388F000E1A91 /* TLRevealTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,8 +45,12 @@
 		D6255C3914ECD696000C80A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D643A4A714EFAF9600EBFCB8 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		D643A4A814EFAF9600EBFCB8 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		D656388B14EE388F000E1A91 /* TLFadeTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLFadeTransition.h; sourceTree = "<group>"; };
-		D656388C14EE388F000E1A91 /* TLFadeTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFadeTransition.m; sourceTree = "<group>"; };
+		D643A4E414F15F1800EBFCB8 /* TLFlipTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLFlipTransition.h; sourceTree = "<group>"; };
+		D643A4E514F15F1800EBFCB8 /* TLFlipTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFlipTransition.m; sourceTree = "<group>"; };
+		D643A4E814F166E300EBFCB8 /* TLMoveInTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMoveInTransition.h; sourceTree = "<group>"; };
+		D643A4E914F166E300EBFCB8 /* TLMoveInTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMoveInTransition.m; sourceTree = "<group>"; };
+		D656388B14EE388F000E1A91 /* TLRevealTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLRevealTransition.h; sourceTree = "<group>"; };
+		D656388C14EE388F000E1A91 /* TLRevealTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLRevealTransition.m; sourceTree = "<group>"; };
 		D65638C714EF4EFE000E1A91 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,8 +112,12 @@
 				D6255C2C14ECCB62000C80A6 /* TLTransitionView.m */,
 				D6255C2E14ECCB75000C80A6 /* TLTransition.h */,
 				D6255C2F14ECCB75000C80A6 /* TLTransition.m */,
-				D656388B14EE388F000E1A91 /* TLFadeTransition.h */,
-				D656388C14EE388F000E1A91 /* TLFadeTransition.m */,
+				D656388B14EE388F000E1A91 /* TLRevealTransition.h */,
+				D656388C14EE388F000E1A91 /* TLRevealTransition.m */,
+				D643A4E414F15F1800EBFCB8 /* TLFlipTransition.h */,
+				D643A4E514F15F1800EBFCB8 /* TLFlipTransition.m */,
+				D643A4E814F166E300EBFCB8 /* TLMoveInTransition.h */,
+				D643A4E914F166E300EBFCB8 /* TLMoveInTransition.m */,
 			);
 			path = TLTransition;
 			sourceTree = "<group>";
@@ -178,7 +187,6 @@
 			files = (
 				D6255C1914ECBC52000C80A6 /* InfoPlist.strings in Resources */,
 				D6255C2514ECBC52000C80A6 /* ViewController.xib in Resources */,
-				D65638C814EF4EFE000E1A91 /* image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,8 +202,10 @@
 				D6255C2214ECBC52000C80A6 /* ViewController.m in Sources */,
 				D6255C2D14ECCB62000C80A6 /* TLTransitionView.m in Sources */,
 				D6255C3014ECCB75000C80A6 /* TLTransition.m in Sources */,
-				D656388D14EE3890000E1A91 /* TLFadeTransition.m in Sources */,
+				D656388D14EE3890000E1A91 /* TLRevealTransition.m in Sources */,
 				D643A4A914EFAF9600EBFCB8 /* RootViewController.m in Sources */,
+				D643A4E614F15F1800EBFCB8 /* TLFlipTransition.m in Sources */,
+				D643A4EA14F166E300EBFCB8 /* TLMoveInTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

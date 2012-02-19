@@ -8,7 +8,10 @@
 
 #import "RootViewController.h"
 #import "ViewController.h"
-#import "TLFadeTransition.h"
+
+#import "TLRevealTransition.h"
+#import "TLFlipTransition.h"
+#import "TLMoveInTransition.h"
 
 @implementation RootViewController
 @synthesize examples;
@@ -41,7 +44,7 @@
 {
     [super viewDidLoad];
 
-    self.examples = [NSArray arrayWithObjects:@"FadeTransition", nil];
+    self.examples = [NSArray arrayWithObjects:@"Reveal",@"Flip",@"MoveIn", nil];
 }
 
 - (void)viewDidUnload
@@ -114,7 +117,27 @@
     ViewController *vc = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
     
-    vc.tlView.transition = [[[TLFadeTransition alloc] init] autorelease];
+    TLTransition *transition = nil;
+    
+    switch (indexPath.row) {
+        case 0:
+            transition = [[[TLRevealTransition alloc] init] autorelease];
+            break;
+        
+        case 1:
+            transition = [[[TLFlipTransition alloc] init] autorelease];
+            [(TLFlipTransition *)transition setFlipDirection:TLFlipDirectionRight];
+            break;
+        
+        case 2:
+            transition = [[[TLMoveInTransition alloc] init] autorelease];
+            break;
+            
+        default:
+            break;
+    }
+    
+    vc.tlView.transition = transition;
 }
 
 @end

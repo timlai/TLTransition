@@ -126,7 +126,7 @@
         [CATransaction setAnimationDuration:duration];
     }
     
-    [transition_ drawWithProgress:progress];
+    [transition_ renderToProgress:progress];
     
     [CATransaction commit];
     

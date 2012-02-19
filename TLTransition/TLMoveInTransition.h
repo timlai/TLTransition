@@ -1,8 +1,7 @@
 //
-//  TLTransition.m
+//  TLMoveInTransition.h
 //  TLTransition
-//
-//  Created by Tim Lai on 2012/2/16.
+//  Created by Tim Lai on 2012/2/20.
 
 // This code is distributed under the terms and conditions of the MIT license. 
 
@@ -28,29 +27,8 @@
 
 #import "TLTransition.h"
 
-@implementation TLTransition
-@synthesize rootLayer = rootLayer_;
-
-- (id)init {
-    self  = [super init];
-    
-    if (self) {
-        self.rootLayer = [CALayer layer];
-    }
-    
-    return self;
+@interface TLMoveInTransition : TLTransition {
+    CALayer *layer1, *layer2;
 }
 
-- (void)prepareFrom:(UIImage *)currentImage to:(UIImage *)newImage {
-    
-}
-
-- (void)renderToProgress:(float)progress {
-    
-}
-
-- (void)dealloc {
-    [rootLayer_ release];
-    [super dealloc];
-}
 @end
