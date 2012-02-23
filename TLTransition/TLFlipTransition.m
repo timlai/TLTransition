@@ -32,13 +32,18 @@
 @synthesize flipDirection;
 
 - (void)prepareFrom:(UIImage *)currentImage to:(UIImage *)newImage {
+    if (backgroundLayer) {
+        [backgroundLayer removeFromSuperlayer];
+        [flipLayer removeFromSuperlayer];
+    }
+
     CGRect rect = self.rootLayer.bounds;
 	rect.size.width /= 2;
 	
 	backgroundLayer = [CALayer layer];
 	backgroundLayer.frame = self.rootLayer.bounds;
 	backgroundLayer.zPosition = -300000;
-	
+	    
 	CALayer *leftLayer = [CALayer layer];
 	leftLayer.frame = rect;
 	leftLayer.masksToBounds = YES;

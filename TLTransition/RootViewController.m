@@ -8,10 +8,12 @@
 
 #import "RootViewController.h"
 #import "ViewController.h"
+#import "GestureViewController.h"
 
 #import "TLRevealTransition.h"
 #import "TLFlipTransition.h"
 #import "TLMoveInTransition.h"
+#import "TLCubeTransition.h"
 
 @implementation RootViewController
 @synthesize examples;
@@ -44,7 +46,9 @@
 {
     [super viewDidLoad];
 
-    self.examples = [NSArray arrayWithObjects:@"Reveal",@"Flip",@"MoveIn", nil];
+    NSArray *section1 = [NSArray arrayWithObjects:@"Reveal",@"Flip",@"MoveIn",@"Cube", nil];
+    NSArray *section2 = [NSArray arrayWithObjects:@"Drag to Flip",@"Drag to move in", nil];
+    self.examples = [NSArray arrayWithObjects:section1,section2, nil];
 }
 
 - (void)viewDidUnload
@@ -85,13 +89,13 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [examples count];
+    return [[examples objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,7 +109,8 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = [examples objectAtIndex:indexPath.row];
+    NSArray *titles = [examples objectAtIndex:indexPath.section];
+    cell.textLabel.text = [titles objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -114,30 +119,59 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ViewController *vc = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    TLTransition *transition = nil;
-    
-    switch (indexPath.row) {
-        case 0:
-            transition = [[[TLRevealTransition alloc] init] autorelease];
-            break;
+
+    if (indexPath.section == 0) {
+        ViewController *vc = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
+        [self.navigationController pushViewController:vc animated:YES];
         
-        case 1:
-            transition = [[[TLFlipTransition alloc] init] autorelease];
-            [(TLFlipTransition *)transition setFlipDirection:TLFlipDirectionRight];
-            break;
+        TLTransition *transition = nil;
         
-        case 2:
-            transition = [[[TLMoveInTransition alloc] init] autorelease];
-            break;
+        switch (indexPath.row) {
+            case 0:
+                transition = [[[TLRevealTransition alloc] init] autorelease];
+                break;
+                
+            case 1:
+                transition = [[[TLFlipTransition alloc] init] autorelease];
+                [(TLFlipTransition *)transition setFlipDirection:TLFlipDirectionRight];
+                break;
+                
+            case 2:
+                transition = [[[TLMoveInTransition alloc] init] autorelease];
+                break;
             
-        default:
-            break;
-    }
+            case 3:
+                transition = [[[TLCubeTransition alloc] init] autorelease];
+                break;
+                
+            default:
+                break;
+        }
+        
+        vc.tlView.transition = transition;
     
-    vc.tlView.transition = transition;
+    }else if (indexPath.section == 1) {
+        GestureViewController *vc = [[[GestureViewController alloc] initWithNibName:@"GestureViewController" bundle:nil] autorelease];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+        TLTransition *transition = nil;
+        
+        switch (indexPath.row) {
+            case 0:
+                transition = [[[TLFlipTransition alloc] init] autorelease];
+                [(TLFlipTransition *)transition setFlipDirection:TLFlipDirectionLeft];
+                break;
+                
+            case 1:
+                transition = [[[TLMoveInTransition alloc] init] autorelease];
+                break;
+            
+            default:
+                break;
+        }
+        
+        vc.tlView.transition = transition;
+    }
 }
 
 @end

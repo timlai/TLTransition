@@ -22,6 +22,12 @@
 		D643A4E614F15F1800EBFCB8 /* TLFlipTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D643A4E514F15F1800EBFCB8 /* TLFlipTransition.m */; };
 		D643A4EA14F166E300EBFCB8 /* TLMoveInTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D643A4E914F166E300EBFCB8 /* TLMoveInTransition.m */; };
 		D656388D14EE3890000E1A91 /* TLRevealTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D656388C14EE388F000E1A91 /* TLRevealTransition.m */; };
+		D68C525D14F22BB3002A8266 /* GestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D68C525B14F22BB3002A8266 /* GestureViewController.m */; };
+		D68C525E14F22BB3002A8266 /* GestureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68C525C14F22BB3002A8266 /* GestureViewController.xib */; };
+		D68C526314F2329E002A8266 /* TLCubeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D68C526214F2329E002A8266 /* TLCubeTransition.m */; };
+		D68C527014F2B018002A8266 /* 1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D68C526D14F2B018002A8266 /* 1.jpeg */; };
+		D68C527114F2B018002A8266 /* 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D68C526E14F2B018002A8266 /* 2.jpeg */; };
+		D68C527214F2B018002A8266 /* 3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D68C526F14F2B018002A8266 /* 3.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +57,14 @@
 		D643A4E914F166E300EBFCB8 /* TLMoveInTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMoveInTransition.m; sourceTree = "<group>"; };
 		D656388B14EE388F000E1A91 /* TLRevealTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLRevealTransition.h; sourceTree = "<group>"; };
 		D656388C14EE388F000E1A91 /* TLRevealTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLRevealTransition.m; sourceTree = "<group>"; };
-		D65638C714EF4EFE000E1A91 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		D68C525A14F22BB3002A8266 /* GestureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureViewController.h; sourceTree = "<group>"; };
+		D68C525B14F22BB3002A8266 /* GestureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureViewController.m; sourceTree = "<group>"; };
+		D68C525C14F22BB3002A8266 /* GestureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GestureViewController.xib; sourceTree = "<group>"; };
+		D68C526114F2329E002A8266 /* TLCubeTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCubeTransition.h; sourceTree = "<group>"; };
+		D68C526214F2329E002A8266 /* TLCubeTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCubeTransition.m; sourceTree = "<group>"; };
+		D68C526D14F2B018002A8266 /* 1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpeg; sourceTree = "<group>"; };
+		D68C526E14F2B018002A8266 /* 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpeg; sourceTree = "<group>"; };
+		D68C526F14F2B018002A8266 /* 3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +113,11 @@
 		D6255C1414ECBC52000C80A6 /* TLTransition */ = {
 			isa = PBXGroup;
 			children = (
+				D68C526014F22BBF002A8266 /* Transitions */,
+				D6255C2B14ECCB62000C80A6 /* TLTransitionView.h */,
+				D6255C2C14ECCB62000C80A6 /* TLTransitionView.m */,
+				D6255C2E14ECCB75000C80A6 /* TLTransition.h */,
+				D6255C2F14ECCB75000C80A6 /* TLTransition.m */,
 				D6255C1D14ECBC52000C80A6 /* AppDelegate.h */,
 				D6255C1E14ECBC52000C80A6 /* AppDelegate.m */,
 				D643A4A714EFAF9600EBFCB8 /* RootViewController.h */,
@@ -107,17 +125,10 @@
 				D6255C2014ECBC52000C80A6 /* ViewController.h */,
 				D6255C2114ECBC52000C80A6 /* ViewController.m */,
 				D6255C2314ECBC52000C80A6 /* ViewController.xib */,
+				D68C525A14F22BB3002A8266 /* GestureViewController.h */,
+				D68C525B14F22BB3002A8266 /* GestureViewController.m */,
+				D68C525C14F22BB3002A8266 /* GestureViewController.xib */,
 				D6255C1514ECBC52000C80A6 /* Supporting Files */,
-				D6255C2B14ECCB62000C80A6 /* TLTransitionView.h */,
-				D6255C2C14ECCB62000C80A6 /* TLTransitionView.m */,
-				D6255C2E14ECCB75000C80A6 /* TLTransition.h */,
-				D6255C2F14ECCB75000C80A6 /* TLTransition.m */,
-				D656388B14EE388F000E1A91 /* TLRevealTransition.h */,
-				D656388C14EE388F000E1A91 /* TLRevealTransition.m */,
-				D643A4E414F15F1800EBFCB8 /* TLFlipTransition.h */,
-				D643A4E514F15F1800EBFCB8 /* TLFlipTransition.m */,
-				D643A4E814F166E300EBFCB8 /* TLMoveInTransition.h */,
-				D643A4E914F166E300EBFCB8 /* TLMoveInTransition.m */,
 			);
 			path = TLTransition;
 			sourceTree = "<group>";
@@ -125,13 +136,30 @@
 		D6255C1514ECBC52000C80A6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D65638C714EF4EFE000E1A91 /* image.png */,
+				D68C526D14F2B018002A8266 /* 1.jpeg */,
+				D68C526E14F2B018002A8266 /* 2.jpeg */,
+				D68C526F14F2B018002A8266 /* 3.jpeg */,
 				D6255C1614ECBC52000C80A6 /* TLTransition-Info.plist */,
 				D6255C1714ECBC52000C80A6 /* InfoPlist.strings */,
 				D6255C1A14ECBC52000C80A6 /* main.m */,
 				D6255C1C14ECBC52000C80A6 /* TLTransition-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D68C526014F22BBF002A8266 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				D656388B14EE388F000E1A91 /* TLRevealTransition.h */,
+				D656388C14EE388F000E1A91 /* TLRevealTransition.m */,
+				D643A4E414F15F1800EBFCB8 /* TLFlipTransition.h */,
+				D643A4E514F15F1800EBFCB8 /* TLFlipTransition.m */,
+				D643A4E814F166E300EBFCB8 /* TLMoveInTransition.h */,
+				D643A4E914F166E300EBFCB8 /* TLMoveInTransition.m */,
+				D68C526114F2329E002A8266 /* TLCubeTransition.h */,
+				D68C526214F2329E002A8266 /* TLCubeTransition.m */,
+			);
+			name = Transitions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +215,10 @@
 			files = (
 				D6255C1914ECBC52000C80A6 /* InfoPlist.strings in Resources */,
 				D6255C2514ECBC52000C80A6 /* ViewController.xib in Resources */,
+				D68C525E14F22BB3002A8266 /* GestureViewController.xib in Resources */,
+				D68C527014F2B018002A8266 /* 1.jpeg in Resources */,
+				D68C527114F2B018002A8266 /* 2.jpeg in Resources */,
+				D68C527214F2B018002A8266 /* 3.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +238,8 @@
 				D643A4A914EFAF9600EBFCB8 /* RootViewController.m in Sources */,
 				D643A4E614F15F1800EBFCB8 /* TLFlipTransition.m in Sources */,
 				D643A4EA14F166E300EBFCB8 /* TLMoveInTransition.m in Sources */,
+				D68C525D14F22BB3002A8266 /* GestureViewController.m in Sources */,
+				D68C526314F2329E002A8266 /* TLCubeTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

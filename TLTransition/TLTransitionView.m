@@ -87,6 +87,7 @@
     
     transition_ = [transition retain];
     transition_.rootLayer.frame = self.bounds;
+
     transitionIsReady = NO;
 }
 
@@ -97,6 +98,7 @@
     }
     
     currentView_ = [currentView retain];
+    currentView_.frame = self.bounds;
     [self addSubview:currentView_];
     
     transitionIsReady = NO;
@@ -108,6 +110,7 @@
         return;
 
     if (!transitionIsReady) {
+
         UIImage *currentImage = [currentView_ imageByRenderingView];
         UIImage *newImage = [nextView_ imageByRenderingView];
         
@@ -133,7 +136,9 @@
     if (progress == 1.0 || progress == 0.0) {
         [self performSelector:@selector(transitionFinishedWithProgress:) withObject:[NSNumber numberWithFloat:progress] afterDelay:duration];
     }
+
 }
+
 
 - (void)dealloc {
     [transition_ release];

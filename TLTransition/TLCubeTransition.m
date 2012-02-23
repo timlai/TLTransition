@@ -1,5 +1,5 @@
 //
-//  TLMoveInTransition.m
+//  TLCubeTransition.m
 //  TLTransition
 //
 //  Created by Tim Lai on 2012/2/20.
@@ -26,33 +26,52 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "TLMoveInTransition.h"
 
-@implementation TLMoveInTransition
+#import "TLCubeTransition.h"
+#define radians(degrees) degrees * M_PI / 180
+
+@implementation TLCubeTransition
+
 - (void)prepareFrom:(UIImage *)currentImage to:(UIImage *)newImage {
-    if (layer1) {
-        [layer1 removeFromSuperlayer];
-        [layer2 removeFromSuperlayer];
+    if (transformLayer) {
+        [transformLayer removeFromSuperlayer];
     }
+    
+    transformLayer = [CATransformLayer layer];
+    transformLayer.frame = self.rootLayer.bounds;
+    CATransform3D transform = CATransform3DIdentity; 
+    transform.m34 = 1.0 / -800;
+    transformLayer.transform = transform;
+    [self.rootLayer addSublayer:transformLayer];
+    
 
-    layer1 = [CALayer layer];
-    layer2 = [CALayer layer];
-    
-    
+    CALayer *layer1 = [CALayer layer];
     layer1.frame = self.rootLayer.bounds;
     layer1.contents = (id)[currentImage CGImage];
+    [transformLayer addSublayer:layer1];
     
+    CATransform3D t = CATransform3DMakeTranslation(0, 0, 0);
+    t = CATransform3DRotate(t, radians(90), 0, 1, 0);
+    t = CATransform3DTranslate(t, self.rootLayer.bounds.size.width/2.0, 0, self.rootLayer.bounds.size.width/2.0);
+    
+    CALayer *layer2 = [CALayer layer];
     layer2.frame = self.rootLayer.bounds;
     layer2.contents = (id)[newImage CGImage];
-    layer2.position = CGPointMake(self.rootLayer.frame.size.width*1.5, self.rootLayer.frame.size.height/2.0);
+    layer2.transform = t;
+    [transformLayer addSublayer:layer2];  
     
-    [self.rootLayer addSublayer:layer1];
-    [self.rootLayer addSublayer:layer2];
+    self.rootLayer.backgroundColor = [UIColor blackColor].CGColor;
+    
 }
 
 - (void)renderToProgress:(float)progress {
-    float distance = self.rootLayer.frame.size.width;
-    layer2.position = CGPointMake(distance*1.5 - distance*progress, self.rootLayer.frame.size.height/2.0);
+    [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    CATransform3D transform = CATransform3DIdentity;    
+    
+    transform = CATransform3DTranslate(transform,-self.rootLayer.bounds.size.width/2.0*progress, 0, -self.rootLayer.bounds.size.width*2.0*progress);
+    transform = CATransform3DRotate(transform, radians(-90.0*progress), 0, 1.0, 0);
+
+    transformLayer.transform = transform;
 }
 
 @end

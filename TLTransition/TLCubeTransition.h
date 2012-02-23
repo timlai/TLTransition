@@ -1,5 +1,5 @@
 //
-//  TLMoveInTransition.h
+//  TLCubeTransition.h
 //  TLTransition
 //
 //  Created by Tim Lai on 2012/2/20.
@@ -28,8 +28,8 @@
 
 #import "TLTransition.h"
 
-@interface TLMoveInTransition : TLTransition {
-    CALayer *layer1, *layer2;
+@interface TLCubeTransition : TLTransition {
+    CATransformLayer *transformLayer;
 }
 
 @end

@@ -47,5 +47,6 @@
 
 @protocol TLTransitionViewDelegate <NSObject>
 @optional
+- (BOOL)shouldFinishTransition:(TLTransitionView *)transitionView;
 - (void)transitionDidFinished:(TLTransitionView *)transitionView;
 @end

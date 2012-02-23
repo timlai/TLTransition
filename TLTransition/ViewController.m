@@ -17,20 +17,9 @@
 
 #pragma mark - Private Methods
 - (UIView *)viewForPageIndex:(int)index {
-    NSArray *colors = [NSArray arrayWithObjects:[UIColor blueColor],[UIColor greenColor],[UIColor redColor], nil];
-    
-    UIView *v = [[[UIView alloc] initWithFrame:self.view.bounds] autorelease];
-    v.backgroundColor = [colors objectAtIndex:index%3];
-    
-    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, v.bounds.size.width, 100)] autorelease];
-    label.text = [NSString stringWithFormat:@"Page %d",index];
-    label.center = CGPointMake(v.frame.size.width/2.0, v.frame.size.height/2.0);
-    label.textAlignment = UITextAlignmentCenter;
-    label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont boldSystemFontOfSize:16];
-    
-    [v addSubview:label];
+
+    NSString *filename = [NSString stringWithFormat:@"%d.jpeg",index%3+1];
+    UIImageView *v = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:filename]] autorelease];
     
     return v;
 }
@@ -47,7 +36,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-        
     UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
     [self.view addGestureRecognizer:gr];
     [gr release];

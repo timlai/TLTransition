@@ -32,6 +32,11 @@
 @implementation TLRevealTransition
 
 - (void)prepareFrom:(UIImage *)currentImage to:(UIImage *)newImage {
+    if (layer1) {
+        [layer1 removeFromSuperlayer];
+        [layer2 removeFromSuperlayer];
+    }
+    
     layer1 = [CALayer layer];
     layer2 = [CALayer layer];
     
