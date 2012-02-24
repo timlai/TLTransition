@@ -28,8 +28,19 @@
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
+typedef enum {
+    TLDirectionLeft,
+    TLDirectionRight,
+    TLDirectionUp,
+    TLDirectionDown
+}TLDirection;
+
 @interface TLTransition : NSObject
-- (void)prepareFrom:(UIImage *)currentImage to:(UIImage *)newImage;
-- (void)renderToProgress:(float)progress;
+
+- (void)initTransition;
+- (void)drawContentAtProgress:(float)progress;
 @property (nonatomic, retain) CALayer *rootLayer;
+@property (nonatomic, retain) UIImage *beginImage;
+@property (nonatomic, retain) UIImage *endImage;
+@property (nonatomic, assign) TLDirection directionType;
 @end

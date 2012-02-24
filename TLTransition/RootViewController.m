@@ -14,6 +14,7 @@
 #import "TLFlipTransition.h"
 #import "TLMoveInTransition.h"
 #import "TLCubeTransition.h"
+#import "TLPushTransition.h"
 
 @implementation RootViewController
 @synthesize examples;
@@ -46,8 +47,8 @@
 {
     [super viewDidLoad];
 
-    NSArray *section1 = [NSArray arrayWithObjects:@"Reveal",@"Flip",@"MoveIn",@"Cube", nil];
-    NSArray *section2 = [NSArray arrayWithObjects:@"Drag to Flip",@"Drag to move in", nil];
+    NSArray *section1 = [NSArray arrayWithObjects:@"Reveal",@"Flip",@"MoveIn",@"Cube", @"Push", nil];
+    NSArray *section2 = [NSArray arrayWithObjects:@"Drag to Flip",@"Drag to move in", @"Scroll",nil];
     self.examples = [NSArray arrayWithObjects:section1,section2, nil];
 }
 
@@ -133,7 +134,7 @@
                 
             case 1:
                 transition = [[[TLFlipTransition alloc] init] autorelease];
-                [(TLFlipTransition *)transition setFlipDirection:TLFlipDirectionRight];
+                //[(TLFlipTransition *)transition setFlipDirection:TLFlipDirectionRight];
                 break;
                 
             case 2:
@@ -142,6 +143,10 @@
             
             case 3:
                 transition = [[[TLCubeTransition alloc] init] autorelease];
+                break;
+            
+            case 4:
+                transition = [[[TLPushTransition alloc] init] autorelease];
                 break;
                 
             default:
@@ -159,13 +164,16 @@
         switch (indexPath.row) {
             case 0:
                 transition = [[[TLFlipTransition alloc] init] autorelease];
-                [(TLFlipTransition *)transition setFlipDirection:TLFlipDirectionLeft];
                 break;
                 
             case 1:
                 transition = [[[TLMoveInTransition alloc] init] autorelease];
                 break;
             
+            case 2:
+                transition = [[[TLPushTransition alloc] init] autorelease];
+                break;
+                
             default:
                 break;
         }

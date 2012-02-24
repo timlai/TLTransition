@@ -14,6 +14,7 @@
 
 @implementation ViewController
 @synthesize tlView;
+@synthesize currentView;
 
 #pragma mark - Private Methods
 - (UIView *)viewForPageIndex:(int)index {
@@ -39,6 +40,9 @@
     UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
     [self.view addGestureRecognizer:gr];
     [gr release];
+    
+    self.tlView = [[[TLTransitionView alloc] initWithFrame:self.view.bounds] autorelease];
+    [self.view addSubview:tlView];
        
 }
 
@@ -59,7 +63,9 @@
 {
     [super viewDidAppear:animated];
     tlView.delegate = self;
-    tlView.currentView = [self viewForPageIndex:pageIndex]; 
+    self.currentView= [self viewForPageIndex:pageIndex];
+    currentView.frame = tlView.bounds;
+    [tlView addSubview:currentView]; 
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -80,20 +86,38 @@
 
 - (void)dealloc {
     [tlView release];
+    [currentView release];
     [super dealloc];
 }
 
 #pragma mark - Selectors
--(void)tapped:(id)sender {
-    pageIndex++;
+-(void)tapped:(UITapGestureRecognizer *) recognizer  {
+    if ([recognizer locationInView:tlView].x > tlView.bounds.size.width/2.0) {
+        pageIndex++;
+        tlView.transition.directionType = TLDirectionLeft;
+    }else {
+        pageIndex--;
+        tlView.transition.directionType = TLDirectionRight;
+    }
     
-    tlView.nextView = [self viewForPageIndex:pageIndex];
     
-    [tlView transitTo:1.0 duration:1.0];
+    [tlView createBeginContentWithView:tlView];
+    [tlView createEndContentWithView:[self viewForPageIndex:pageIndex]];
+    [tlView setProgress:1.0 duration:1.0];
 }
 
 #pragma mark - TLTransitionView Delegate Methods
+- (BOOL)shouldFinishTransition:(TLTransitionView *)transitionView {
+    [currentView removeFromSuperview];
+    self.currentView = [self viewForPageIndex:pageIndex];
+    currentView.frame = tlView.bounds;
+    [tlView addSubview:currentView];
+    
+    return YES;
+}
+
 - (void)transitionDidFinished:(TLTransitionView *)transitionView {
     NSLog(@"transition did finished");
+    
 }
 @end

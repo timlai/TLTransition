@@ -14,7 +14,7 @@
 
 @implementation GestureViewController
 @synthesize tlView;
-
+@synthesize currentView;
 #pragma mark - Private Methods
 - (UIView *)viewForPageIndex:(int)index {
     
@@ -55,7 +55,10 @@
 {
     [super viewDidAppear:animated];
     tlView.delegate = self;
-    tlView.currentView = [self viewForPageIndex:pageIndex]; 
+    tlView.delegate = self;
+    self.currentView= [self viewForPageIndex:pageIndex];
+    currentView.frame = tlView.bounds;
+    [tlView addSubview:currentView];     
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -66,47 +69,56 @@
 
 - (void)dealloc {
     [tlView release];
+    [currentView release];
     [super dealloc];
 }
 
-#pragma mark - TLTransitionView Delegate Methods
-- (void)transitionDidFinished:(TLTransitionView *)transitionView {
-    NSLog(@"transition did finished");
-}
 
 - (void) panned:(UIPanGestureRecognizer *) recognizer {
     	    
 	float translation = [recognizer translationInView:tlView].x;
-	float progress = translation / tlView.bounds.size.width;
-	
-
-    progress = fabsf(progress);
-	
-
+    
+    float progress = 0.0;
+    if ((translation) > 0) {
+        progress = translation / tlView.bounds.size.width;
+    }else {
+        progress = -translation / tlView.bounds.size.width;
+    }
+        
 	switch (recognizer.state) {
 		case UIGestureRecognizerStateBegan:
-            pageIndex++;
-            tlView.nextView = [self viewForPageIndex:pageIndex];
+            if (translation > 0) {
+                pageIndex--;
+                tlView.transition.directionType = TLDirectionRight;
+                
+            }else {
+                pageIndex++;
+                tlView.transition.directionType = TLDirectionLeft;
+            }            
+
+            [tlView createBeginContentWithView:tlView];
+            [tlView createEndContentWithView:[self viewForPageIndex:pageIndex]];
 			break;
 			
 			
 		case UIGestureRecognizerStateChanged:
-            NSLog(@"panned %f",progress);
-
-			[tlView transitTo:progress duration:0.0];
-			
+			[tlView setProgress:progress];
 			break;
 			
 			
 		case UIGestureRecognizerStateFailed:
-			[tlView transitTo:0.0 duration:0.5];
+            if (tlView.progress > 0.5) {
+                [tlView setProgress:1.0 duration:0.5];
+            }else {
+                [tlView setProgress:0.0 duration:0.5];
+            }
 			break;
 			
 		case UIGestureRecognizerStateRecognized:
 			if (fabs((translation + [recognizer velocityInView:self.view].x / 4) / self.view.bounds.size.width) > 0.5) {
-				[tlView transitTo:1.0 duration:0.5];
+				[tlView setProgress:1.0 duration:0.5];
 			} else {
-				[tlView transitTo:0.0 duration:0.5];
+				[tlView setProgress:0.0 duration:0.5];
 			}
             
 			break;
@@ -115,4 +127,24 @@
 	}
 }
 
+#pragma mark - TLTransitionView Delegate Methods
+- (void)transitionDidFinished:(TLTransitionView *)transitionView {
+    NSLog(@"transition did finished");
+}
+
+- (BOOL)shouldFinishTransition:(TLTransitionView *)transitionView {
+    if (transitionView.progress == 0.0) {
+        pageIndex = transitionView.transition.directionType == TLDirectionLeft?pageIndex-1:pageIndex+1;
+    }else {
+        [currentView removeFromSuperview];
+        self.currentView = [self viewForPageIndex:pageIndex];
+        currentView.frame = tlView.bounds;
+        [tlView addSubview:currentView];
+
+    }
+    
+    NSLog(@"pageindex = %d",pageIndex);
+        
+    return YES;
+}
 @end

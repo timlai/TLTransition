@@ -29,30 +29,61 @@
 #import "TLMoveInTransition.h"
 
 @implementation TLMoveInTransition
-- (void)prepareFrom:(UIImage *)currentImage to:(UIImage *)newImage {
+- (void)initTransition {
     if (layer1) {
         [layer1 removeFromSuperlayer];
         [layer2 removeFromSuperlayer];
     }
-
+    
     layer1 = [CALayer layer];
     layer2 = [CALayer layer];
     
     
     layer1.frame = self.rootLayer.bounds;
-    layer1.contents = (id)[currentImage CGImage];
+    layer1.contents = (id)[self.beginImage CGImage];
     
     layer2.frame = self.rootLayer.bounds;
-    layer2.contents = (id)[newImage CGImage];
-    layer2.position = CGPointMake(self.rootLayer.frame.size.width*1.5, self.rootLayer.frame.size.height/2.0);
+    layer2.contents = (id)[self.endImage CGImage];
+    layer2.shadowColor = [UIColor blackColor].CGColor;
+    layer2.shadowRadius = 10.0;
+    layer2.shadowOpacity = 0.75;
+    
+    float xPosition = 0.0;
+    
+    switch (self.directionType) {
+        case TLDirectionLeft:
+            xPosition = self.rootLayer.frame.size.width*1.5;
+            layer2.shadowOffset = CGSizeMake(-5.0, 0.0);
+            break;
+        case TLDirectionRight:
+            xPosition = -self.rootLayer.frame.size.width/2.0;
+            layer2.shadowOffset = CGSizeMake(5.0, 0.0);
+
+            break;
+        default:
+            break;
+    }
+    layer2.position = CGPointMake(xPosition, self.rootLayer.frame.size.height/2.0);
     
     [self.rootLayer addSublayer:layer1];
     [self.rootLayer addSublayer:layer2];
 }
 
-- (void)renderToProgress:(float)progress {
+- (void)drawContentAtProgress:(float)progress {
     float distance = self.rootLayer.frame.size.width;
-    layer2.position = CGPointMake(distance*1.5 - distance*progress, self.rootLayer.frame.size.height/2.0);
+    float xPosition = 0.0;
+    
+    switch (self.directionType) {
+        case TLDirectionLeft:
+            xPosition = distance*1.5 - distance*progress;
+            break;
+        case TLDirectionRight:
+            xPosition = -distance*0.5 + distance*progress;
+            break;
+        default:
+            break;
+    }
+    layer2.position = CGPointMake(xPosition, self.rootLayer.frame.size.height/2.0);
 }
 
 @end

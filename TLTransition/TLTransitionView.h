@@ -36,17 +36,19 @@
     BOOL transitionIsReady;
 }
 
-- (void)transitTo:(float)progress duration:(float)duration;
-
+- (void)setProgress:(float)progress duration:(float)duration;
+- (void)createBeginContentWithView:(UIView *)view;
+- (void)createEndContentWithView:(UIView *)view;
 @property (nonatomic, retain) TLTransition *transition;
-@property (nonatomic, retain) UIView *currentView;
-@property (nonatomic, retain) UIView *nextView;
+@property (nonatomic, assign) float progress;
 @property (nonatomic, assign) id<TLTransitionViewDelegate> delegate;
 
 @end
 
 @protocol TLTransitionViewDelegate <NSObject>
-@optional
+@required
 - (BOOL)shouldFinishTransition:(TLTransitionView *)transitionView;
+
+@optional
 - (void)transitionDidFinished:(TLTransitionView *)transitionView;
 @end

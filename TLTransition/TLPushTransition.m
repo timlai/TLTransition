@@ -1,8 +1,8 @@
 //
-//  TLRevealTransition.m
+//  TLPushTransition.m
 //  TLTransition
 //
-//  Created by Tim Lai on 2012/2/17.
+//  Created by Tim Lai on 2012/2/24.
 
 // This code is distributed under the terms and conditions of the MIT license. 
 
@@ -26,11 +26,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import "TLPushTransition.h"
 
-#import "TLRevealTransition.h"
-
-@implementation TLRevealTransition
-
+@implementation TLPushTransition
 - (void)initTransition {
     if (layer1) {
         [layer1 removeFromSuperlayer];
@@ -40,21 +38,52 @@
     layer1 = [CALayer layer];
     layer2 = [CALayer layer];
     
+    
     layer1.frame = self.rootLayer.bounds;
     layer1.contents = (id)[self.beginImage CGImage];
-
+    
     layer2.frame = self.rootLayer.bounds;
     layer2.contents = (id)[self.endImage CGImage];
-    layer2.opacity = 0.0;
     
+    float xPosition = 0.0;
+    
+    switch (self.directionType) {
+        case TLDirectionLeft:
+            xPosition = self.rootLayer.frame.size.width*1.5;
+            break;
+            
+        case TLDirectionRight:
+            xPosition = -self.rootLayer.frame.size.width/2.0;            
+            break;
+            
+        default:
+            break;
+    }
+    layer2.position = CGPointMake(xPosition, self.rootLayer.frame.size.height/2.0);
+    
+    [self.rootLayer addSublayer:layer1];
     [self.rootLayer addSublayer:layer2];
-    [self.rootLayer addSublayer:layer1];   
-    
 }
 
 - (void)drawContentAtProgress:(float)progress {
-    layer1.opacity = 1.0 - progress;
-    layer2.opacity = progress;      
+    float distance = self.rootLayer.frame.size.width;
+    float xPosition1 = 0.0;
+    float xPosition2 = 0.0;
+    
+    switch (self.directionType) {
+        case TLDirectionLeft:
+            xPosition1 =  distance*0.5 - distance*progress;
+            xPosition2 = distance*1.5 - distance*progress;
+            break;
+        case TLDirectionRight:
+            xPosition1 =  distance*0.5 + distance*progress;
+            xPosition2 = -distance*0.5 + distance*progress;
+            break;
+        default:
+            break;
+    }
+    layer1.position = CGPointMake(xPosition1, self.rootLayer.frame.size.height/2.0);
+    layer2.position = CGPointMake(xPosition2, self.rootLayer.frame.size.height/2.0);
 }
 
 @end

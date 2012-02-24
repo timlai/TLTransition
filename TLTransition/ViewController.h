@@ -14,4 +14,5 @@
     int pageIndex;
 }
 @property (retain, nonatomic) IBOutlet TLTransitionView *tlView;
+@property (retain, nonatomic) UIView *currentView;
 @end

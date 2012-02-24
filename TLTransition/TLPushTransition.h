@@ -1,8 +1,8 @@
 //
-//  TLRevealTransition.m
+//  TLPushTransition.h
 //  TLTransition
 //
-//  Created by Tim Lai on 2012/2/17.
+//  Created by Tim Lai on 2012/2/24.
 
 // This code is distributed under the terms and conditions of the MIT license. 
 
@@ -26,35 +26,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#import "TLTransition.h"
 
-#import "TLRevealTransition.h"
-
-@implementation TLRevealTransition
-
-- (void)initTransition {
-    if (layer1) {
-        [layer1 removeFromSuperlayer];
-        [layer2 removeFromSuperlayer];
-    }
-    
-    layer1 = [CALayer layer];
-    layer2 = [CALayer layer];
-    
-    layer1.frame = self.rootLayer.bounds;
-    layer1.contents = (id)[self.beginImage CGImage];
-
-    layer2.frame = self.rootLayer.bounds;
-    layer2.contents = (id)[self.endImage CGImage];
-    layer2.opacity = 0.0;
-    
-    [self.rootLayer addSublayer:layer2];
-    [self.rootLayer addSublayer:layer1];   
-    
-}
-
-- (void)drawContentAtProgress:(float)progress {
-    layer1.opacity = 1.0 - progress;
-    layer2.opacity = progress;      
+@interface TLPushTransition : TLTransition {
+    CALayer *layer1, *layer2;
 }
 
 @end

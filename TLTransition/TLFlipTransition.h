@@ -28,11 +28,6 @@
 
 #import "TLTransition.h"
 
-typedef enum {
-	TLFlipDirectionLeft,
-	TLFlipDirectionRight,
-} TLFlipDirection;
-
 @interface TLFlipTransition : TLTransition {
     CALayer *backgroundLayer;
 	CALayer *flipLayer;
@@ -42,5 +37,4 @@ typedef enum {
 	float currentAngle;
 }
 
-@property (nonatomic, assign) TLFlipDirection flipDirection;
 @end
