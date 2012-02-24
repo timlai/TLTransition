@@ -30,27 +30,30 @@
 
 @implementation TLTransition
 @synthesize rootLayer = rootLayer_;
+@synthesize beginImage = beginImage_;
+@synthesize endImage = endImage_;
+@synthesize directionType;
 
 - (id)init {
-    self  = [super init];
-    
+    self = [super init];
     if (self) {
         self.rootLayer = [CALayer layer];
     }
     
     return self;
 }
-
-- (void)prepareFrom:(UIImage *)currentImage to:(UIImage *)newImage {
+- (void)initTransition {
     
 }
 
-- (void)renderToProgress:(float)progress {
+- (void)drawContentAtProgress:(float)progress {
     
 }
 
 - (void)dealloc {
     [rootLayer_ release];
+    [beginImage_ release];
+    [endImage_ release];
     [super dealloc];
 }
 @end

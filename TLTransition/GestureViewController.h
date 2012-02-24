@@ -12,6 +12,6 @@
 @interface GestureViewController : UIViewController<TLTransitionViewDelegate> {
     int pageIndex;
 }
-
+@property (retain, nonatomic) UIView *currentView;
 @property (retain, nonatomic) IBOutlet TLTransitionView *tlView;
 @end

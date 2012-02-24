@@ -29,21 +29,20 @@
 #import "TLFlipTransition.h"
 
 @implementation TLFlipTransition
-@synthesize flipDirection;
 
-- (void)prepareFrom:(UIImage *)currentImage to:(UIImage *)newImage {
+- (void)initTransition {
     if (backgroundLayer) {
-        [backgroundLayer removeFromSuperlayer];
         [flipLayer removeFromSuperlayer];
+        [backgroundLayer removeFromSuperlayer];
     }
-
+    
     CGRect rect = self.rootLayer.bounds;
 	rect.size.width /= 2;
 	
 	backgroundLayer = [CALayer layer];
 	backgroundLayer.frame = self.rootLayer.bounds;
 	backgroundLayer.zPosition = -300000;
-	    
+    
 	CALayer *leftLayer = [CALayer layer];
 	leftLayer.frame = rect;
 	leftLayer.masksToBounds = YES;
@@ -60,12 +59,12 @@
 	
 	[backgroundLayer addSublayer:rightLayer];
 	
-	if (flipDirection == TLFlipDirectionRight) {
-		leftLayer.contents = (id) [newImage CGImage];
-		rightLayer.contents = (id) [currentImage CGImage];
+	if (self.directionType == TLDirectionRight) {
+		leftLayer.contents = (id) [self.endImage CGImage];
+		rightLayer.contents = (id) [self.beginImage CGImage];
 	} else {
-		leftLayer.contents = (id) [currentImage CGImage];
-		rightLayer.contents = (id) [newImage CGImage];
+		leftLayer.contents = (id) [self.beginImage CGImage];
+		rightLayer.contents = (id) [self.endImage CGImage];
 	}
     
 	[self.rootLayer  addSublayer:backgroundLayer];
@@ -93,11 +92,11 @@
 	
 	[flipLayer addSublayer:frontLayer];
 	
-	if (flipDirection == TLFlipDirectionRight) {
-		backLayer.contents = (id) [currentImage CGImage];
+	if (self.directionType == TLDirectionRight) {
+		backLayer.contents = (id) [self.beginImage CGImage];
 		backLayer.contentsGravity = kCAGravityLeft;
 		
-		frontLayer.contents = (id) [newImage CGImage];
+		frontLayer.contents = (id) [self.endImage CGImage];
 		frontLayer.contentsGravity = kCAGravityRight;
 		
 		CATransform3D transform = CATransform3DMakeRotation(0.0, 0.0, 1.0, 0.0);
@@ -109,9 +108,9 @@
 		endFlipAngle = -M_PI;
 	} else {
 		backLayer.contentsGravity = kCAGravityLeft;
-		backLayer.contents = (id) [newImage CGImage];
+		backLayer.contents = (id) [self.endImage CGImage];
 		
-		frontLayer.contents = (id) [currentImage CGImage];
+		frontLayer.contents = (id) [self.beginImage CGImage];
 		frontLayer.contentsGravity = kCAGravityRight;
 		
 		CATransform3D transform = CATransform3DMakeRotation(-M_PI / 1.1, 0.0, 1.0, 0.0);
@@ -124,7 +123,8 @@
 	}
 }
 
-- (void)renderToProgress:(float)progress {
+    
+- (void)drawContentAtProgress:(float)progress {
     float newAngle = startFlipAngle + progress * (endFlipAngle - startFlipAngle);
 	
 	currentAngle = newAngle;
@@ -133,8 +133,6 @@
 	endTransform.m34 = 1.0f / 2500.0f;
 	endTransform = CATransform3DRotate(endTransform, newAngle, 0.0, 1.0, 0.0);	
 	
-	//[flipLayer removeAllAnimations];
-
 	flipLayer.transform = endTransform;
     
 }

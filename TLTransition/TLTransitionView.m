@@ -51,30 +51,38 @@
 @end
 
 @interface TLTransitionView(PrivateMethods)
-- (void)transitionFinishedWithProgress:(NSNumber *)progress;
+- (void)transitionDidTransit;
+- (void)configTransition;
 @end
 
 @implementation TLTransitionView
 @synthesize transition = transition_;
-@synthesize currentView = currentView_;
-@synthesize nextView = nextView_;
+@synthesize progress = progress_;
 @synthesize delegate = delegate_;
 
 #pragma mark - Private Methods
-- (void)transitionFinishedWithProgress:(NSNumber *)progress {
-    [transition_.rootLayer removeFromSuperlayer];
+- (void)transitionDidTransit {
     
-    if ([progress floatValue]== 0.0) {
-        currentView_.alpha = 1.0;
-    }else {
-        self.currentView = nextView_;
+    if ([delegate_ shouldFinishTransition:self]) {
+
+        [transition_.rootLayer removeFromSuperlayer];
+        
+        if ([delegate_ respondsToSelector:@selector(transitionDidFinished:)]) {
+            [delegate_ transitionDidFinished:self];
+        }
     }
+}
 
-    self.nextView = nil;
+- (void)configTransition {
+    if (!transitionIsReady) {
+        transition_.rootLayer.frame = self.bounds;
 
-    
-    if ([delegate_ respondsToSelector:@selector(transitionDidFinished:)]) {
-        [delegate_ transitionDidFinished:self];
+        [transition_ initTransition];
+        
+        UIView *v = [self.subviews lastObject];
+        [v.layer addSublayer:transition_.rootLayer];
+        
+        transitionIsReady = YES;
     }
 }
 
@@ -86,64 +94,52 @@
     }
     
     transition_ = [transition retain];
-    transition_.rootLayer.frame = self.bounds;
 
     transitionIsReady = NO;
 }
 
-- (void)setCurrentView:(UIView *)currentView {
-    if (currentView_) {
-        [currentView_ removeFromSuperview];
-        [currentView_ release];
-    }
-    
-    currentView_ = [currentView retain];
-    currentView_.frame = self.bounds;
-    [self addSubview:currentView_];
-    
-    transitionIsReady = NO;
+- (void)setProgress:(float)progress {   
+    [self configTransition];
+    progress_ = progress;
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    [transition_ drawContentAtProgress:progress];
+    [CATransaction commit];
 }
 
-
-- (void)transitTo:(float)progress duration:(float)duration {
-    if (self.currentView == nil || self.nextView == nil) 
-        return;
-
-    if (!transitionIsReady) {
-
-        UIImage *currentImage = [currentView_ imageByRenderingView];
-        UIImage *newImage = [nextView_ imageByRenderingView];
-        
-        currentView_.alpha = 0.0;
-        
-        [transition_ prepareFrom:currentImage to:newImage];
-        [self.layer addSublayer:transition_.rootLayer];
-        transitionIsReady = YES;
-    }
+- (void)setProgress:(float)progress duration:(float)duration {
+    [self configTransition];
     
-    [transition_.rootLayer removeAllAnimations];
+    [CATransaction flush];
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:duration];
     
-    if (duration > 0.0) {
-        [CATransaction flush];
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:duration];
-    }
-    
-    [transition_ renderToProgress:progress];
+    progress_ = progress;
+    [transition_ drawContentAtProgress:progress];
     
     [CATransaction commit];
-    
-    if (progress == 1.0 || progress == 0.0) {
-        [self performSelector:@selector(transitionFinishedWithProgress:) withObject:[NSNumber numberWithFloat:progress] afterDelay:duration];
-    }
 
+    [self performSelector:@selector(transitionDidTransit) withObject:nil afterDelay:duration];
 }
 
+- (void)createBeginContentWithView:(UIView *)view {
+    if (transition_) {
+        view.frame = self.bounds;
+        transition_.beginImage = [view imageByRenderingView];
+        transitionIsReady = NO;
+    }
+}
+
+- (void)createEndContentWithView:(UIView *)view {
+    if (transition_) {
+        view.frame = self.bounds;
+        transition_.endImage = [view imageByRenderingView];
+        transitionIsReady = NO;
+    }
+}
 
 - (void)dealloc {
     [transition_ release];
-    [currentView_ release];
-    [nextView_ release];
     [super dealloc];
 }
 

@@ -32,7 +32,7 @@
 
 @implementation TLCubeTransition
 
-- (void)prepareFrom:(UIImage *)currentImage to:(UIImage *)newImage {
+- (void)initTransition {
     if (transformLayer) {
         [transformLayer removeFromSuperlayer];
     }
@@ -47,16 +47,22 @@
 
     CALayer *layer1 = [CALayer layer];
     layer1.frame = self.rootLayer.bounds;
-    layer1.contents = (id)[currentImage CGImage];
+    layer1.contents = (id)[self.beginImage CGImage];
     [transformLayer addSublayer:layer1];
     
     CATransform3D t = CATransform3DMakeTranslation(0, 0, 0);
-    t = CATransform3DRotate(t, radians(90), 0, 1, 0);
-    t = CATransform3DTranslate(t, self.rootLayer.bounds.size.width/2.0, 0, self.rootLayer.bounds.size.width/2.0);
+    if (self.directionType == TLDirectionLeft) {
+        t = CATransform3DRotate(t, radians(90), 0, 1, 0);
+        t = CATransform3DTranslate(t, self.rootLayer.bounds.size.width/2.0, 0, self.rootLayer.bounds.size.width/2.0);
+    }else {
+        t = CATransform3DRotate(t, radians(-90), 0, 1, 0);
+        t = CATransform3DTranslate(t, -self.rootLayer.bounds.size.width/2.0, 0, self.rootLayer.bounds.size.width/2.0);
+    }
+
     
     CALayer *layer2 = [CALayer layer];
     layer2.frame = self.rootLayer.bounds;
-    layer2.contents = (id)[newImage CGImage];
+    layer2.contents = (id)[self.endImage CGImage];
     layer2.transform = t;
     [transformLayer addSublayer:layer2];  
     
@@ -64,12 +70,18 @@
     
 }
 
-- (void)renderToProgress:(float)progress {
+- (void)drawContentAtProgress:(float)progress {
     [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     CATransform3D transform = CATransform3DIdentity;    
     
-    transform = CATransform3DTranslate(transform,-self.rootLayer.bounds.size.width/2.0*progress, 0, -self.rootLayer.bounds.size.width*2.0*progress);
-    transform = CATransform3DRotate(transform, radians(-90.0*progress), 0, 1.0, 0);
+    if (self.directionType == TLDirectionLeft) {
+        transform = CATransform3DTranslate(transform,-self.rootLayer.bounds.size.width/2.0*progress, 0, -self.rootLayer.bounds.size.width*3.0*progress);
+        transform = CATransform3DRotate(transform, radians(-90.0*progress), 0, 1.0, 0);
+    }else {
+        transform = CATransform3DTranslate(transform,self.rootLayer.bounds.size.width/2.0*progress, 0, -self.rootLayer.bounds.size.width*3.0*progress);
+        transform = CATransform3DRotate(transform, radians(90.0*progress), 0, 1.0, 0);
+    }
+
 
     transformLayer.transform = transform;
 }

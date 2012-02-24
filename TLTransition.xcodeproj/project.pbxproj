@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6214B6314F733ED00B1E130 /* TLPushTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D6214B6214F733EC00B1E130 /* TLPushTransition.m */; };
 		D6255C0F14ECBC52000C80A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6255C0E14ECBC52000C80A6 /* UIKit.framework */; };
 		D6255C1114ECBC52000C80A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6255C1014ECBC52000C80A6 /* Foundation.framework */; };
 		D6255C1314ECBC52000C80A6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6255C1214ECBC52000C80A6 /* CoreGraphics.framework */; };
@@ -31,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D6214B6114F733EC00B1E130 /* TLPushTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLPushTransition.h; sourceTree = "<group>"; };
+		D6214B6214F733EC00B1E130 /* TLPushTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLPushTransition.m; sourceTree = "<group>"; };
 		D6255C0A14ECBC52000C80A6 /* TLTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TLTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6255C0E14ECBC52000C80A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D6255C1014ECBC52000C80A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -158,6 +161,8 @@
 				D643A4E914F166E300EBFCB8 /* TLMoveInTransition.m */,
 				D68C526114F2329E002A8266 /* TLCubeTransition.h */,
 				D68C526214F2329E002A8266 /* TLCubeTransition.m */,
+				D6214B6114F733EC00B1E130 /* TLPushTransition.h */,
+				D6214B6214F733EC00B1E130 /* TLPushTransition.m */,
 			);
 			name = Transitions;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				D643A4EA14F166E300EBFCB8 /* TLMoveInTransition.m in Sources */,
 				D68C525D14F22BB3002A8266 /* GestureViewController.m in Sources */,
 				D68C526314F2329E002A8266 /* TLCubeTransition.m in Sources */,
+				D6214B6314F733ED00B1E130 /* TLPushTransition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
