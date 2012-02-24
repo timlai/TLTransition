@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TLTransitionView.h"
+#import "TLTransitionManager.h"
 
-
-@interface ViewController : UIViewController<TLTransitionViewDelegate> {
+@interface ViewController : UIViewController<TLTransitionManagerDelegate> {
     int pageIndex;
 }
-@property (retain, nonatomic) IBOutlet TLTransitionView *tlView;
 @property (retain, nonatomic) UIView *currentView;
 @end

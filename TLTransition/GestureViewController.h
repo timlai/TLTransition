@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TLTransitionView.h"
+#import "TLTransitionManager.h"
 
-@interface GestureViewController : UIViewController<TLTransitionViewDelegate> {
+@interface GestureViewController : UIViewController<TLTransitionManagerDelegate> {
     int pageIndex;
 }
 @property (retain, nonatomic) UIView *currentView;
-@property (retain, nonatomic) IBOutlet TLTransitionView *tlView;
 @end

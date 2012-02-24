@@ -1,8 +1,8 @@
 //
-//  TLTransitionView.h
+//  TLTransitionManager.h
 //  TLTransition
 //
-//  Created by Tim Lai on 2012/2/16.
+//  Created by Tim Lai on 2012/2/24.
 
 // This code is distributed under the terms and conditions of the MIT license. 
 
@@ -26,29 +26,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "TLTransition.h"
 #import <QuartzCore/QuartzCore.h>
 
-@protocol TLTransitionViewDelegate;
+@protocol TLTransitionManagerDelegate;
 
-@interface TLTransitionView : UIView {
+@interface TLTransitionManager : NSObject {
     BOOL transitionIsReady;
 }
 
++ (TLTransitionManager *)sharedManager;
+
 - (void)setProgress:(float)progress duration:(float)duration;
-- (void)createBeginContentWithView:(UIView *)view;
+- (void)createTransitionOnView:(UIView *)view;
 - (void)createEndContentWithView:(UIView *)view;
+
 @property (nonatomic, retain) TLTransition *transition;
 @property (nonatomic, assign) float progress;
-@property (nonatomic, assign) id<TLTransitionViewDelegate> delegate;
+@property (nonatomic, assign) id<TLTransitionManagerDelegate> delegate;
 
 @end
 
-@protocol TLTransitionViewDelegate <NSObject>
-@required
-- (BOOL)shouldFinishTransition:(TLTransitionView *)transitionView;
-
+@protocol TLTransitionManagerDelegate <NSObject>
 @optional
-- (void)transitionDidFinished:(TLTransitionView *)transitionView;
+- (void)transitionWillTerminate:(TLTransitionManager *)transitionManager;
+- (void)transitionDidTerminated:(TLTransitionManager *)transitionManager;
 @end

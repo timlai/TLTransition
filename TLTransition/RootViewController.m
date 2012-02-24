@@ -153,7 +153,7 @@
                 break;
         }
         
-        vc.tlView.transition = transition;
+        [TLTransitionManager sharedManager].transition = transition;
     
     }else if (indexPath.section == 1) {
         GestureViewController *vc = [[[GestureViewController alloc] initWithNibName:@"GestureViewController" bundle:nil] autorelease];
@@ -178,7 +178,7 @@
                 break;
         }
         
-        vc.tlView.transition = transition;
+        [TLTransitionManager sharedManager].transition = transition;
     }
 }
 

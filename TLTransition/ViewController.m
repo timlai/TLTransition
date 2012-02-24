@@ -13,7 +13,6 @@
 @end
 
 @implementation ViewController
-@synthesize tlView;
 @synthesize currentView;
 
 #pragma mark - Private Methods
@@ -41,15 +40,19 @@
     [self.view addGestureRecognizer:gr];
     [gr release];
     
-    self.tlView = [[[TLTransitionView alloc] initWithFrame:self.view.bounds] autorelease];
-    [self.view addSubview:tlView];
+    [TLTransitionManager sharedManager].delegate = self;
+    
+    self.currentView = [self viewForPageIndex:pageIndex];
+    currentView.frame = self.view.bounds;
+    currentView.autoresizingMask = self.view.autoresizingMask;
+    [self.view addSubview:currentView];
        
 }
 
 - (void)viewDidUnload
 {
-    [self setTlView:nil];
     [super viewDidUnload];
+    self.currentView = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -62,10 +65,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    tlView.delegate = self;
-    self.currentView= [self viewForPageIndex:pageIndex];
-    currentView.frame = tlView.bounds;
-    [tlView addSubview:currentView]; 
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -85,39 +84,41 @@
 }
 
 - (void)dealloc {
-    [tlView release];
     [currentView release];
     [super dealloc];
 }
 
 #pragma mark - Selectors
 -(void)tapped:(UITapGestureRecognizer *) recognizer  {
-    if ([recognizer locationInView:tlView].x > tlView.bounds.size.width/2.0) {
+    TLTransitionManager *manager = [TLTransitionManager sharedManager];
+    
+    if ([recognizer locationInView:self.view].x > self.view.bounds.size.width/2.0) {
         pageIndex++;
-        tlView.transition.directionType = TLDirectionLeft;
+        manager.transition.directionType = TLDirectionLeft;
     }else {
         pageIndex--;
-        tlView.transition.directionType = TLDirectionRight;
+        manager.transition.directionType = TLDirectionRight;
     }
     
+    [manager createTransitionOnView:currentView];
     
-    [tlView createBeginContentWithView:tlView];
-    [tlView createEndContentWithView:[self viewForPageIndex:pageIndex]];
-    [tlView setProgress:1.0 duration:1.0];
+    UIView *nextView = [self viewForPageIndex:pageIndex];
+    nextView.frame = self.view.bounds;
+    [manager createEndContentWithView:nextView];
+    [manager setProgress:1.0 duration:1.0];
 }
 
-#pragma mark - TLTransitionView Delegate Methods
-- (BOOL)shouldFinishTransition:(TLTransitionView *)transitionView {
+#pragma mark - TLTransitionManager Delegate Methods
+- (void)transitionWillTerminate:(TLTransitionManager *)transitionManager {
     [currentView removeFromSuperview];
     self.currentView = [self viewForPageIndex:pageIndex];
-    currentView.frame = tlView.bounds;
-    [tlView addSubview:currentView];
-    
-    return YES;
+    currentView.frame = self.view.bounds;
+    [self.view addSubview:currentView];
+
 }
 
-- (void)transitionDidFinished:(TLTransitionView *)transitionView {
+- (void)transitionDidTerminated:(TLTransitionManager *)transitionManager {
     NSLog(@"transition did finished");
-    
 }
+
 @end

@@ -1,8 +1,8 @@
 //
-//  TLTransitionView.m
+//  TLTransitionManager.m
 //  TLTransition
 //
-//  Created by Tim Lai on 2012/2/16.
+//  Created by Tim Lai on 2012/2/24.
 
 // This code is distributed under the terms and conditions of the MIT license. 
 
@@ -26,7 +26,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "TLTransitionView.h"
+#import "TLTransitionManager.h"
 
 #pragma mark - UIView helpers
 @interface UIView(Extended) 
@@ -50,51 +50,65 @@
 }
 @end
 
-@interface TLTransitionView(PrivateMethods)
+@interface TLTransitionManager()
 - (void)transitionDidTransit;
 - (void)configTransition;
+@property (nonatomic, retain) UIView *transitionView;
 @end
 
-@implementation TLTransitionView
+@implementation TLTransitionManager
 @synthesize transition = transition_;
 @synthesize progress = progress_;
 @synthesize delegate = delegate_;
+@synthesize transitionView = transitionView_;
 
-#pragma mark - Private Methods
 - (void)transitionDidTransit {
     
-    if ([delegate_ shouldFinishTransition:self]) {
-
-        [transition_.rootLayer removeFromSuperlayer];
-        
-        if ([delegate_ respondsToSelector:@selector(transitionDidFinished:)]) {
-            [delegate_ transitionDidFinished:self];
-        }
-    }
+    if ([delegate_ respondsToSelector:@selector(transitionWillTerminate:)]) 
+        [delegate_  transitionWillTerminate:self];
+    
+    [transition_.rootLayer removeFromSuperlayer];
+    
+    if ([delegate_ respondsToSelector:@selector(transitionDidTerminated:)]) 
+        [delegate_ transitionDidTerminated:self];
 }
 
 - (void)configTransition {
     if (!transitionIsReady) {
-        transition_.rootLayer.frame = self.bounds;
-
+        [CATransaction begin];
+        [CATransaction setDisableActions:YES];
+        
+        transition_.rootLayer.frame = transitionView_.bounds;        
         [transition_ initTransition];
         
-        UIView *v = [self.subviews lastObject];
-        [v.layer addSublayer:transition_.rootLayer];
+        [transitionView_.layer addSublayer:transition_.rootLayer];
         
+        [CATransaction commit];
         transitionIsReady = YES;
     }
 }
+
+#pragma mark - Singleton
+static TLTransitionManager *sharedManager_ = nil;
+
++ (TLTransitionManager *)sharedManager {
+	if (!sharedManager_) {
+		sharedManager_ = [[TLTransitionManager alloc] init];
+	}
+	return sharedManager_;
+}
+
 
 #pragma mark - Public Methods
 - (void)setTransition:(TLTransition *)transition {
     if (transition_) {
         [transition_.rootLayer removeFromSuperlayer];
         [transition_ release];
+        transition_ = nil;
     }
     
     transition_ = [transition retain];
-
+    
     transitionIsReady = NO;
 }
 
@@ -118,13 +132,13 @@
     [transition_ drawContentAtProgress:progress];
     
     [CATransaction commit];
-
+    
     [self performSelector:@selector(transitionDidTransit) withObject:nil afterDelay:duration];
 }
 
-- (void)createBeginContentWithView:(UIView *)view {
+- (void)createTransitionOnView:(UIView *)view {
     if (transition_) {
-        view.frame = self.bounds;
+        self.transitionView = view;
         transition_.beginImage = [view imageByRenderingView];
         transitionIsReady = NO;
     }
@@ -132,7 +146,6 @@
 
 - (void)createEndContentWithView:(UIView *)view {
     if (transition_) {
-        view.frame = self.bounds;
         transition_.endImage = [view imageByRenderingView];
         transitionIsReady = NO;
     }
@@ -140,6 +153,7 @@
 
 - (void)dealloc {
     [transition_ release];
+    [transitionView_ release];
     [super dealloc];
 }
 

@@ -36,7 +36,7 @@
         [layer1 removeFromSuperlayer];
         [layer2 removeFromSuperlayer];
     }
-    
+        
     layer1 = [CALayer layer];
     layer2 = [CALayer layer];
     
