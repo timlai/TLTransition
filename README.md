@@ -1,5 +1,5 @@
 #TLTransition
-[AFKpageFlipper](https://github.com/mtabini/AFKPageFlipper) and [HMGLTransitions](https://github.com/Split82/HMGLTransitions) are both provide very good UIView transitions. However AFKpageFlipper only supports flip animation, and HMGLTransitions are based on OpenGL ES, which is difficult for most people to follow (like me). So the TLTransition is here.
+[AFKpageFlipper](https://github.com/mtabini/AFKPageFlipper) and [HMGLTransitions](https://github.com/Split82/HMGLTransitions) both provide very good UIView transitions. However AFKpageFlipper only supports flip animation, and HMGLTransitions are based on OpenGL ES, which is difficult for most people to follow (like me). So the TLTransition is here.
 
 
 ##Usage
